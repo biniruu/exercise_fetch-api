@@ -39,7 +39,14 @@
     .then((response) => {
       response.text()
       .then((text) => {
-        document.querySelector('#nav').innerHTML = text;
+        const items = text.split(',');
+        let menus = '';
+        
+        items.forEach((item) => {
+          item = `<li><a href="#!${item}" onclick="fetchPage('${item}')">${item}</a></li>`;
+          menus = menus + item;
+        });
+        document.querySelector('#nav').innerHTML = menus;
       });
     });
   </script>
